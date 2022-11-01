@@ -1,14 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { FC } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
+import { Ionicons } from "@expo/vector-icons";
 
 interface ListItemProps {
+  imageUri: string;
   name: string;
   rating: number;
 }
 
-export const ListItem: FC<ListItemProps> = ({ name, rating }) => {
+export const ListItem: FC<ListItemProps> = ({ imageUri, name, rating }) => {
   const { navigate } = useNavigation();
 
   const itemPressHandler = () => {
@@ -23,11 +25,10 @@ export const ListItem: FC<ListItemProps> = ({ name, rating }) => {
       <View style={styles.expenseItem}>
         <View>
           <Text style={[styles.textBase, styles.description]}>{name}</Text>
+          {<Ionicons name="star" size={20} color="white" />}
           <Text style={styles.textBase}>{rating}</Text>
         </View>
-        <View style={styles.amountContainer}>
-          <Text style={styles.amount}>TEST</Text>
-        </View>
+        <Image style={styles.image} source={{ uri: imageUri }} />
       </View>
     </Pressable>
   );
@@ -70,5 +71,9 @@ const styles = StyleSheet.create({
   amount: {
     color: GlobalStyles.colors.primary500,
     fontWeight: "bold",
+  },
+  image: {
+    width: 50,
+    height: 50,
   },
 });

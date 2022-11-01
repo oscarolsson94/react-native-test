@@ -34,7 +34,11 @@ export const SearchScreen = () => {
       <FlatList
         data={shows}
         renderItem={({ item }) => (
-          <ListItem name={item.show.name} rating={item.score} />
+          <ListItem
+            name={item.show.name}
+            rating={item.score}
+            imageUri={item.show.image.medium}
+          />
         )}
         keyExtractor={({ show }) => show.id.toString()}
       />
