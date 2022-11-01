@@ -37,7 +37,10 @@ export const SearchScreen = () => {
           <ListItem
             name={item.show.name}
             rating={item.score}
-            imageUri={item.show.image.medium}
+            imageUri={item.show.image?.medium}
+            genres={
+              item.show.genres.length > 0 ? item.show.genres : ["Unknown genre"]
+            }
           />
         )}
         keyExtractor={({ show }) => show.id.toString()}
