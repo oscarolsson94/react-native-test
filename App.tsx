@@ -6,7 +6,7 @@ import { SearchScreen } from "./screens/SearchScreen";
 
 const Stack = createNativeStackNavigator();
 
-export const App = () => {
+export default function App() {
   return (
     <>
       <StatusBar style="auto" />
@@ -18,4 +18,4 @@ export const App = () => {
       </NavigationContainer>
     </>
   );
-};
+}
