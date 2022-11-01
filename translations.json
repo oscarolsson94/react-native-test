@@ -1,5 +1,8 @@
 {
+  "headers": {
+    "search": "Discover new TV shows"
+  },
   "searchBar": {
-    "placeholder": "Discover new TV shows"
+    "placeholder": "Search by text.."
   }
 }

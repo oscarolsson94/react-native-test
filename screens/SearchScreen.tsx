@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Text, View, TextInput, FlatList } from "react-native";
 import { fetchTVSeries } from "../api";
+import { ListItem } from "../components/ListItem";
 import useDebounce from "../hooks/useDebounce";
 import translations from "../translations.json";
 import { Show } from "../utils/types";
@@ -32,7 +33,9 @@ export const SearchScreen = () => {
       />
       <FlatList
         data={shows}
-        renderItem={({ item }) => <Text>{item.show.name}</Text>}
+        renderItem={({ item }) => (
+          <ListItem name={item.show.name} rating={item.score} />
+        )}
         keyExtractor={({ show }) => show.id.toString()}
       />
     </View>
