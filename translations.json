@@ -3,6 +3,10 @@
     "search": "Discover new TV shows"
   },
   "searchBar": {
-    "placeholder": "Search by text.."
+    "placeholder": "Search by text..",
+    "noMatchingSearches": "No series matched your search, try searching for something else."
+  },
+  "errors": {
+    "apiError": "A network error occured, check your connection and try again."
   }
 }
