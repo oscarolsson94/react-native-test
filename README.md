@@ -17,7 +17,7 @@
 
 - TESTS - I guess I got smacked in the face for using Expo. After spending 1-2 hours trying to fix peer-dependency issues while setting up testing-library + jest I had to give up. I have experience with writing unit tests for web with similar tools, and also end-to-end tests with cypress. I understand the importance of proper testing.
 
-- Network request error handling - Would be nice to handle errors differently depending on the error, and give the user more of a hint.
+- Network request error handling - Would be nice to handle errors differently depending on the error, and give the user more of a hint. Also in a more central way, as you would in any project of scale.
 
 - Styling - Obviously I would love to improve the styling, but I focused on the code-quality and structure rather than coming up with a good design as time was limited.
 
