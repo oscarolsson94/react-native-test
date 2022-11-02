@@ -9,9 +9,9 @@
 
 ## Notes
 
-- I have been working with React on the web for a few of years, but sadly it's hard finding React Native assignments. I have therefore only been building a few side projects on my own in Native, hence I will use this as an excuse for using Expo to complete this test.
+- I have been working with React on the web for a few years, but sadly it's hard finding React Native assignments. I have therefore only been building a few side projects on my own in Native, hence I will use this as an excuse for using Expo to complete this test.
 
-- I am really eager to learn more about Native, as I love the entire Javascript ecosystem and as with anything you enjoy, you have an easier time learning it.
+- I am really eager to learn more about Native, as I love the entire Javascript ecosystem and as with anything you enjoy, you have an easier time learning and adapting to it.
 
 ## Things I would improve if there was time
 
@@ -22,3 +22,5 @@
 - Styling - Obviously I would love to improve the styling, but I focused on the code-quality and structure rather than coming up with a good design as time was limited.
 
 - Add reducer with actions to context - For scalablity and structure this would be a good addition.
+
+- More of the nice-to-haves - I added the favorites functionality, but would have liked to implement the rest aswell :)
