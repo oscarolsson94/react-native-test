@@ -16,6 +16,7 @@ import translations from "../translations.json";
 import { GenreList } from "../components/GenreList";
 import { ExternalLink } from "../components/ExternalLink";
 import { useGlobalContext } from "../store/show-context";
+import { IconButton } from "../components/IconButton";
 
 export const DetailsScreen = ({ route, navigation }: Props) => {
   const { name, rating, genres, summary, imageUri, href } = route.params;
@@ -34,27 +35,25 @@ export const DetailsScreen = ({ route, navigation }: Props) => {
     navigation.setOptions({
       title: name,
       headerTintColor: "white",
-      headerRight: ({ tintColor }) =>
+      headerRight: () =>
         showIsAFavorite ? (
-          <Pressable
-            style={styles.iconContainer}
+          <IconButton
             onPress={() => {
               setFavoriteShows([
                 ...favoriteShows.filter((show) => show.name !== name),
               ]);
             }}
           >
-            <Ionicons name="star" color={tintColor} size={20} />
-          </Pressable>
+            <Ionicons name="star" color="white" size={20} />
+          </IconButton>
         ) : (
-          <Pressable
-            style={styles.iconContainer}
+          <IconButton
             onPress={() => {
               setFavoriteShows([...favoriteShows, route.params]);
             }}
           >
-            <Ionicons name="star-outline" color={tintColor} size={20} />
-          </Pressable>
+            <Ionicons name="star-outline" color="white" size={20} />
+          </IconButton>
         ),
     });
   }, [favoriteShows, setFavoriteShows]);

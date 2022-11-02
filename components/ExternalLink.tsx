@@ -1,6 +1,5 @@
 import { FC } from "react";
 import {
-  View,
   Text,
   Pressable,
   StyleSheet,

@@ -11,14 +11,3 @@ export const FavoriteShowsContext = createContext<ShowContext>({
   setFavoriteShows: () => {},
 });
 export const useGlobalContext = () => useContext(FavoriteShowsContext);
-
-/* const showsReducer = (state: ShowInfo[], action) => {
-  switch (action.type) {
-    case "ADD":
-      return [...state, { ...action.payload }];
-    case "DELETE":
-      return state.filter((show) => show.name !== action.payload);
-    default:
-      return state;
-  }
-}; */

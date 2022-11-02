@@ -7,6 +7,7 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { GlobalStyles } from "./constants/styles";
 import { DetailsScreen } from "./screens/DetailsScreen";
+import { FavoritesScreen } from "./screens/FavoritesScreen";
 import { SearchScreen } from "./screens/SearchScreen";
 import { FavoriteShowsContext } from "./store/show-context";
 import translations from "./translations.json";
@@ -15,6 +16,7 @@ import { ShowInfo } from "./utils/types";
 type RootStackParamList = {
   SearchScreen: undefined;
   DetailsScreen: ShowInfo;
+  FavoritesScreen: undefined;
 };
 
 export type Props = NativeStackScreenProps<RootStackParamList, "DetailsScreen">;
@@ -43,9 +45,12 @@ export default function App() {
             <Stack.Screen
               name="SearchScreen"
               component={SearchScreen}
-              options={{ title: translations.headers.search }}
+              options={{
+                title: translations.headers.search,
+              }}
             />
             <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+            <Stack.Screen name="FavoritesScreen" component={FavoritesScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </FavoriteShowsContext.Provider>

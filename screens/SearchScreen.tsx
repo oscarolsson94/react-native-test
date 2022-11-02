@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
-import { Text, View, TextInput, FlatList } from "react-native";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { Text, View, StyleSheet } from "react-native";
 import { fetchTVSeries } from "../api";
-import { ListItem } from "../components/ListItem";
 import { SearchBar } from "../components/SearchBar";
 import useDebounce from "../hooks/useDebounce";
 import translations from "../translations.json";
 import { Show } from "../utils/types";
+import { Ionicons } from "@expo/vector-icons";
+import { useGlobalContext } from "../store/show-context";
+import { useNavigation } from "@react-navigation/native";
+import { IconButton } from "../components/IconButton";
+import { ShowsList } from "../components/ShowsList";
 
 const DEBOUNCE_DELAY = 500;
 
@@ -15,6 +19,8 @@ export const SearchScreen = () => {
   const [fetchLoading, setFetchLoading] = useState(false);
   const [apiError, setApiError] = useState(false);
 
+  const { favoriteShows } = useGlobalContext();
+  const navigation = useNavigation();
   const debouncedQuery = useDebounce<string>(searchQuery, DEBOUNCE_DELAY);
 
   useEffect(() => {
@@ -31,38 +37,43 @@ export const SearchScreen = () => {
     }
   }, [debouncedQuery]);
 
+  useLayoutEffect(() => {
+    if (favoriteShows.length > 0) {
+      navigation.setOptions({
+        headerRight: () => (
+          <IconButton
+            onPress={() => {
+              navigation.navigate("FavoritesScreen");
+            }}
+          >
+            <Ionicons name="save-outline" color="white" size={20} />
+          </IconButton>
+        ),
+      });
+    }
+  }, [favoriteShows]);
+
   const handleTextChange = (enteredText: string) => {
     setFetchLoading(true);
     setSearchQuery(enteredText);
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <SearchBar onTextChange={handleTextChange} isLoading={fetchLoading} />
       {apiError ? (
         <Text>{translations.errors.apiError}</Text>
       ) : shows.length > 0 && searchQuery ? (
-        <FlatList
-          data={shows}
-          renderItem={({ item }) => (
-            <ListItem
-              name={item.show.name}
-              rating={item.score}
-              imageUri={item.show.image?.medium}
-              genres={
-                item.show.genres.length > 0
-                  ? item.show.genres
-                  : ["Unknown genre"]
-              }
-              summary={item.show.summary}
-              href={item.show.url}
-            />
-          )}
-          keyExtractor={({ show }) => show.id.toString()}
-        />
+        <ShowsList shows={shows} />
       ) : searchQuery && !fetchLoading ? (
         <Text>{translations.searchBar.noMatchingSearches}</Text>
       ) : null}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
