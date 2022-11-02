@@ -30,32 +30,30 @@ export const DetailsScreen = ({ route, navigation }: Props) => {
     await Linking.openURL(href);
   };
 
+  const addToFavorites = () => {
+    setFavoriteShows([...favoriteShows, route.params]);
+  };
+
+  const removeFromFavorites = () => {
+    setFavoriteShows([...favoriteShows.filter((show) => show.name !== name)]);
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: name,
       headerTintColor: "white",
       headerRight: () =>
         showIsAFavorite ? (
-          <IconButton
-            onPress={() => {
-              setFavoriteShows([
-                ...favoriteShows.filter((show) => show.name !== name),
-              ]);
-            }}
-          >
+          <IconButton onPress={removeFromFavorites}>
             <Ionicons name="star" color="white" size={20} />
           </IconButton>
         ) : (
-          <IconButton
-            onPress={() => {
-              setFavoriteShows([...favoriteShows, route.params]);
-            }}
-          >
+          <IconButton onPress={addToFavorites}>
             <Ionicons name="star-outline" color="white" size={20} />
           </IconButton>
         ),
     });
-  }, [favoriteShows, setFavoriteShows]);
+  }, [name, showIsAFavorite, removeFromFavorites, addToFavorites]);
 
   return (
     <ScrollView style={styles.rootContainer}>

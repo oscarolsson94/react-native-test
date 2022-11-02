@@ -8,16 +8,17 @@ export const FavoritesScreen = () => {
     <View style={styles.container}>
       <FlatList
         data={favoriteShows}
-        renderItem={({ item }) => (
-          <ListItem
-            name={item.name}
-            rating={item.rating}
-            imageUri={item.imageUri}
-            genres={item.genres.length > 0 ? item.genres : ["Unknown genre"]}
-            summary={item.summary}
-            href={item.href}
-          />
-        )}
+        renderItem={({ item }) => {
+          const listItemProps = {
+            name: item.name,
+            rating: item.rating,
+            imageUri: item.imageUri,
+            genres: item.genres.length > 0 ? item.genres : ["Unknown genre"],
+            summary: item.summary,
+            href: item.href,
+          };
+          return <ListItem {...listItemProps} />;
+        }}
         keyExtractor={(item) => item.name}
       />
     </View>

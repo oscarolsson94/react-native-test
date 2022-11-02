@@ -4,7 +4,7 @@
     "favoritesScreen": "My favorite shows"
   },
   "searchBar": {
-    "placeholder": "Search by text..",
+    "placeholder": "Search for a show..",
     "noMatchingSearches": "No series matched your search, try searching for something else."
   },
   "errors": {
