@@ -50,7 +50,14 @@ export default function App() {
               }}
             />
             <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
-            <Stack.Screen name="FavoritesScreen" component={FavoritesScreen} />
+            <Stack.Screen
+              name="FavoritesScreen"
+              component={FavoritesScreen}
+              options={{
+                title: translations.headers.favoritesScreen,
+                headerTintColor: "white",
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </FavoriteShowsContext.Provider>
