@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { FC } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 
 interface RatingStarsProps {
@@ -24,6 +24,7 @@ export const RatingStars: FC<RatingStarsProps> = ({ color, size, rating }) => {
       {shouldAddHalfStar && (
         <Ionicons name="star-half" size={size} color={color} />
       )}
+      <Text style={styles.text}>{(rating * 5).toFixed(1)} / 5</Text>
     </View>
   );
 };
@@ -31,7 +32,11 @@ export const RatingStars: FC<RatingStarsProps> = ({ color, size, rating }) => {
 const styles = StyleSheet.create({
   starContainer: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     marginVertical: GlobalStyles.spacings.xxsmall,
+  },
+  text: {
+    color: GlobalStyles.colors.primary50,
+    marginLeft: GlobalStyles.spacings.xsmall,
   },
 });
