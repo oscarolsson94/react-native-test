@@ -11,11 +11,11 @@
 
 - I have been working with React on the web for a few of years, but sadly it's hard finding React Native assignments. I have therefore only been building a few side projects on my own in Native, hence I will use this as an excuse for using Expo to complete this test.
 
-- I am really eager to learn more about Native, as I love the entire Javascript ecosystem.
+- I am really eager to learn more about Native, as I love the entire Javascript ecosystem and as with anything you enjoy, you have an easier time learning it.
 
 ## Things I would improve if there was time
 
-- TESTS - I guess I got smacked in the face for using Expo. After spending 1-2 hours trying to fix peer-dependency issues while setting up testing-library + jest I had to give up. I have experience with writing unit tests for web with similar tools, and also end-to-end tests with cypress.
+- TESTS - I guess I got smacked in the face for using Expo. After spending 1-2 hours trying to fix peer-dependency issues while setting up testing-library + jest I had to give up. I have experience with writing unit tests for web with similar tools, and also end-to-end tests with cypress. I understand the importance of proper testing.
 
 - Network request error handling - Would be nice to handle errors differently depending on the error, and give the user more of a hint.
 
