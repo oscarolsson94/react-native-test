@@ -23,7 +23,13 @@ export const ListItem: FC<ListItemProps> = ({
   const { navigate } = useNavigation();
 
   const itemPressHandler = () => {
-    navigate("DetailsScreen", {});
+    navigate("DetailsScreen", {
+      imageUri,
+      name,
+      rating,
+      genres,
+      summary,
+    });
   };
 
   return (

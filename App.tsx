@@ -1,12 +1,28 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { GlobalStyles } from "./constants/styles";
 import { DetailsScreen } from "./screens/DetailsScreen";
 import { SearchScreen } from "./screens/SearchScreen";
 import translations from "./translations.json";
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  SearchScreen: undefined;
+  DetailsScreen: {
+    imageUri?: string;
+    name: string;
+    rating: number;
+    genres: string[];
+    summary: string;
+  };
+};
+
+export type Props = NativeStackScreenProps<RootStackParamList, "DetailsScreen">;
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
@@ -28,13 +44,7 @@ export default function App() {
             component={SearchScreen}
             options={{ title: translations.headers.search }}
           />
-          <Stack.Screen
-            name="DetailsScreen"
-            component={DetailsScreen}
-            options={{
-              presentation: "modal",
-            }}
-          />
+          <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
