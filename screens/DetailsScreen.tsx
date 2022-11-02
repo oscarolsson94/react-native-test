@@ -6,7 +6,6 @@ import {
   View,
   Linking,
   ScrollView,
-  Pressable,
 } from "react-native";
 import { Props } from "../App";
 import { RatingStars } from "../components/RatingStars";

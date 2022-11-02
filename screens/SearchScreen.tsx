@@ -24,17 +24,24 @@ export const SearchScreen = () => {
   const debouncedQuery = useDebounce<string>(searchQuery, DEBOUNCE_DELAY);
 
   useEffect(() => {
-    setApiError(false);
-    try {
-      (async () => {
-        const fetchedShows = await fetchTVSeries(searchQuery);
-        setShows(fetchedShows);
-      })();
-    } catch {
-      setApiError(true);
-    } finally {
+    const fetchData = async () => {
+      const data = await fetchTVSeries(searchQuery);
+
+      if (typeof data === "object") {
+        setShows(data);
+      } else {
+        setApiError(true);
+      }
       setFetchLoading(false);
+    };
+
+    setApiError(false);
+
+    if (searchQuery.length > 0) {
+      fetchData();
     }
+
+    setFetchLoading(false);
   }, [debouncedQuery]);
 
   useLayoutEffect(() => {
