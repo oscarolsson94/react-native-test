@@ -4,6 +4,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { RatingStars } from "./RatingStars";
+import { GenreList } from "./GenreList";
 
 interface ListItemProps {
   imageUri?: string;
@@ -11,6 +12,7 @@ interface ListItemProps {
   rating: number;
   genres: string[];
   summary: string;
+  href: string;
 }
 
 export const ListItem: FC<ListItemProps> = ({
@@ -19,6 +21,7 @@ export const ListItem: FC<ListItemProps> = ({
   rating,
   genres,
   summary,
+  href,
 }) => {
   const { navigate } = useNavigation();
 
@@ -29,6 +32,7 @@ export const ListItem: FC<ListItemProps> = ({
       rating,
       genres,
       summary,
+      href,
     });
   };
 
@@ -41,17 +45,9 @@ export const ListItem: FC<ListItemProps> = ({
         <View style={styles.leftContainer}>
           <View>
             <Text style={[styles.textBase, styles.titleText]}>{name}</Text>
-            <View style={styles.starContainer}>
-              <RatingStars rating={rating} />
-            </View>
+            <RatingStars size={12} color="white" rating={rating} />
           </View>
-          <View style={styles.genreContainer}>
-            {genres.map((genre) => (
-              <Text key={genre} style={[styles.textBase, styles.genreText]}>
-                •{genre}
-              </Text>
-            ))}
-          </View>
+          <GenreList genres={genres} />
         </View>
         <View style={styles.rowContainer}>
           <Image
@@ -90,16 +86,11 @@ const styles = StyleSheet.create({
   },
   leftContainer: {
     justifyContent: "space-between",
+    flexWrap: "wrap",
+    maxWidth: "70%",
   },
   textBase: {
     color: GlobalStyles.colors.primary50,
-  },
-  genreContainer: {
-    flexDirection: "row",
-  },
-  genreText: {
-    fontSize: 12,
-    marginRight: 4,
   },
   titleText: {
     fontSize: 16,
@@ -116,10 +107,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
-  },
-  starContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 2,
   },
 });

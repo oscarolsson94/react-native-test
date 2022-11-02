@@ -17,6 +17,7 @@ type RootStackParamList = {
     rating: number;
     genres: string[];
     summary: string;
+    href: string;
   };
 };
 

@@ -8,5 +8,8 @@
   },
   "errors": {
     "apiError": "A network error occured, check your connection and try again."
+  },
+  "detailsScreen": {
+    "readMoreOnSite": "Visit our website for more info"
   }
 }

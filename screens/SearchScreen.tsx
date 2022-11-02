@@ -55,6 +55,7 @@ export const SearchScreen = () => {
                   : ["Unknown genre"]
               }
               summary={item.show.summary}
+              href={item.show.url}
             />
           )}
           keyExtractor={({ show }) => show.id.toString()}
