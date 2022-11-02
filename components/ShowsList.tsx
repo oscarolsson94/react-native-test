@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FlatList, Text } from "react-native";
+import { FlatList } from "react-native";
 import { Show } from "../utils/types";
 import { ListItem } from "./ListItem";
 

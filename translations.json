@@ -1,6 +1,7 @@
 {
   "headers": {
-    "search": "Discover new TV shows"
+    "search": "Discover new TV shows",
+    "favoritesScreen": "My favorite shows"
   },
   "searchBar": {
     "placeholder": "Search by text..",

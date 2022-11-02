@@ -1,9 +1,20 @@
+import { useNavigation } from "@react-navigation/native";
+import { useLayoutEffect } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { ListItem } from "../components/ListItem";
 import { useGlobalContext } from "../store/show-context";
+import translations from "../translations.json";
 
 export const FavoritesScreen = () => {
   const { favoriteShows } = useGlobalContext();
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: translations.headers.favoritesScreen,
+      headerTintColor: "white",
+    });
+  }, [navigation]);
   return (
     <View style={styles.container}>
       <FlatList
