@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { GlobalStyles } from "../constants/styles";
 
 interface GenreListProps {
   genres: string[];
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   genreText: {
-    fontSize: 12,
-    marginRight: 4,
+    fontSize: GlobalStyles.fontSize.small,
+    marginRight: GlobalStyles.spacings.xxsmall,
   },
 });

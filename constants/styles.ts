@@ -13,4 +13,26 @@ export const GlobalStyles = {
     gray500: "#39324a",
     gray700: "#221c30",
   },
+  spacings: {
+    xxsmall: 4,
+    xsmall: 6,
+    small: 8,
+    medium: 12,
+    large: 16,
+    xlarge: 20,
+    xxlarge: 24,
+  },
+  fontSize: {
+    xsmall: 8,
+    small: 12,
+    medium: 16,
+    large: 18,
+    xlarge: 24,
+  },
+  borderRadius: {
+    xsmall: 4,
+    small: 6,
+    medium: 8,
+    large: 12,
+  },
 };

@@ -72,12 +72,12 @@ const styles = StyleSheet.create({
     opacity: 0.75,
   },
   showItem: {
-    padding: 12,
-    marginVertical: 8,
+    padding: GlobalStyles.spacings.medium,
+    marginVertical: GlobalStyles.spacings.small,
     backgroundColor: GlobalStyles.colors.primary400,
     flexDirection: "row",
     justifyContent: "space-between",
-    borderRadius: 6,
+    borderRadius: GlobalStyles.borderRadius.small,
     elevation: 3,
     shadowColor: GlobalStyles.colors.gray500,
     shadowRadius: 4,
@@ -93,14 +93,14 @@ const styles = StyleSheet.create({
     color: GlobalStyles.colors.primary50,
   },
   titleText: {
-    fontSize: 16,
-    marginBottom: 4,
+    fontSize: GlobalStyles.fontSize.medium,
+    marginBottom: GlobalStyles.spacings.xsmall,
     fontWeight: "bold",
   },
   image: {
     width: 70,
     height: 70,
-    marginRight: 20,
+    marginRight: GlobalStyles.spacings.xlarge,
   },
   rowContainer: {
     flex: 1,

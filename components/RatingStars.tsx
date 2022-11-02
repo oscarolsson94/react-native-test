@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { FC } from "react";
 import { StyleSheet, View } from "react-native";
+import { GlobalStyles } from "../constants/styles";
 
 interface RatingStarsProps {
   rating: number;
@@ -31,6 +32,6 @@ const styles = StyleSheet.create({
   starContainer: {
     flexDirection: "row",
     alignItems: "flex-start",
-    marginVertical: 2,
+    marginVertical: GlobalStyles.spacings.xxsmall,
   },
 });

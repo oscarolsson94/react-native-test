@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary500,
   },
   bottomContainer: {
-    padding: 16,
+    padding: GlobalStyles.spacings.large,
   },
   rowContainer: {
     flexDirection: "row",
@@ -90,12 +90,12 @@ const styles = StyleSheet.create({
     color: "white",
   },
   title: {
-    fontSize: 24,
+    fontSize: GlobalStyles.fontSize.xlarge,
     fontWeight: "bold",
   },
   textContainer: {
-    marginTop: 10,
-    paddingVertical: 10,
+    marginTop: GlobalStyles.spacings.medium,
+    paddingVertical: GlobalStyles.spacings.medium,
     borderTopColor: "white",
     borderTopWidth: 2,
   },

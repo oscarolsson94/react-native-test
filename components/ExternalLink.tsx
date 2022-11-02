@@ -7,6 +7,7 @@ import {
   GestureResponderEvent,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { GlobalStyles } from "../constants/styles";
 
 interface ExternalLinkProps {
   text: string;
@@ -25,11 +26,11 @@ export const ExternalLink: FC<ExternalLinkProps> = ({ text, onPress }) => {
 const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: "row",
-    marginVertical: 20,
+    marginVertical: GlobalStyles.spacings.xlarge,
   },
   textLink: {
     color: "white",
     textDecorationLine: "underline",
-    fontSize: 18,
+    fontSize: GlobalStyles.fontSize.large,
   },
 });
