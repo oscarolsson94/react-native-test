@@ -10,6 +10,7 @@ interface ListItemProps {
   name: string;
   rating: number;
   genres: string[];
+  summary: string;
 }
 
 export const ListItem: FC<ListItemProps> = ({
@@ -17,11 +18,12 @@ export const ListItem: FC<ListItemProps> = ({
   name,
   rating,
   genres,
+  summary,
 }) => {
   const { navigate } = useNavigation();
 
   const itemPressHandler = () => {
-    navigate("DetailsScreen");
+    navigate("DetailsScreen", {});
   };
 
   return (
@@ -39,7 +41,9 @@ export const ListItem: FC<ListItemProps> = ({
           </View>
           <View style={styles.genreContainer}>
             {genres.map((genre) => (
-              <Text style={[styles.textBase, styles.genreText]}>•{genre}</Text>
+              <Text key={genre} style={[styles.textBase, styles.genreText]}>
+                •{genre}
+              </Text>
             ))}
           </View>
         </View>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Text, View, TextInput, FlatList } from "react-native";
 import { fetchTVSeries } from "../api";
 import { ListItem } from "../components/ListItem";
+import { SearchBar } from "../components/SearchBar";
 import useDebounce from "../hooks/useDebounce";
 import translations from "../translations.json";
 import { Show } from "../utils/types";
@@ -16,13 +17,8 @@ export const SearchScreen = () => {
 
   const debouncedQuery = useDebounce<string>(searchQuery, DEBOUNCE_DELAY);
 
-  const handleTextChange = (enteredText: string) => {
-    setSearchQuery(enteredText);
-  };
-
   useEffect(() => {
     setApiError(false);
-    setFetchLoading(true);
     try {
       (async () => {
         const fetchedShows = await fetchTVSeries(searchQuery);
@@ -35,13 +31,14 @@ export const SearchScreen = () => {
     }
   }, [debouncedQuery]);
 
+  const handleTextChange = (enteredText: string) => {
+    setFetchLoading(true);
+    setSearchQuery(enteredText);
+  };
+
   return (
     <View>
-      <TextInput
-        placeholder={translations.searchBar.placeholder}
-        onChangeText={handleTextChange}
-        /* fetchLoading && showSpinner */
-      />
+      <SearchBar onTextChange={handleTextChange} isLoading={fetchLoading} />
       {apiError ? (
         <Text>{translations.errors.apiError}</Text>
       ) : shows.length > 0 && searchQuery ? (
@@ -57,6 +54,7 @@ export const SearchScreen = () => {
                   ? item.show.genres
                   : ["Unknown genre"]
               }
+              summary={item.show.summary}
             />
           )}
           keyExtractor={({ show }) => show.id.toString()}

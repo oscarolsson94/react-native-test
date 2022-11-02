@@ -1,9 +1,63 @@
-import { Text, View } from "react-native";
+import React, { FC } from "react";
+import { ActivityIndicator, StyleSheet, TextInput, View } from "react-native";
+import translations from "../translations.json";
+import { Ionicons } from "@expo/vector-icons";
+import { GlobalStyles } from "../constants/styles";
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  onTextChange: (text: string) => void;
+  isLoading: boolean;
+}
+
+export const SearchBar: FC<SearchBarProps> = ({ onTextChange, isLoading }) => {
+  const handleTextChange = (enteredText: string) => {
+    onTextChange(enteredText);
+  };
+
   return (
-    <View>
-      <Text>Hello</Text>
+    <View style={styles.container}>
+      <View style={styles.iconContainer}>
+        <Ionicons
+          name="search-outline"
+          size={24}
+          color={GlobalStyles.colors.primary700}
+        />
+      </View>
+      <TextInput
+        style={styles.input}
+        placeholder={translations.searchBar.placeholder}
+        onChangeText={handleTextChange}
+      />
+      <View style={styles.loaderContainer}>
+        {isLoading && (
+          <ActivityIndicator
+            size="small"
+            color={GlobalStyles.colors.primary700}
+          />
+        )}
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginHorizontal: 8,
+    marginVertical: 8,
+    paddingHorizontal: 24,
+    backgroundColor: GlobalStyles.colors.primary100,
+    borderRadius: 6,
+  },
+  iconContainer: { width: "10%" },
+  loaderContainer: { width: "10%" },
+  input: {
+    backgroundColor: GlobalStyles.colors.primary100,
+    color: GlobalStyles.colors.primary700,
+    padding: 8,
+    fontSize: 18,
+    width: "80%",
+  },
+});
