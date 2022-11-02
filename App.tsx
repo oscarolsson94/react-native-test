@@ -4,21 +4,17 @@ import {
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import { GlobalStyles } from "./constants/styles";
 import { DetailsScreen } from "./screens/DetailsScreen";
 import { SearchScreen } from "./screens/SearchScreen";
+import { FavoriteShowsContext } from "./store/show-context";
 import translations from "./translations.json";
+import { ShowInfo } from "./utils/types";
 
 type RootStackParamList = {
   SearchScreen: undefined;
-  DetailsScreen: {
-    imageUri?: string;
-    name: string;
-    rating: number;
-    genres: string[];
-    summary: string;
-    href: string;
-  };
+  DetailsScreen: ShowInfo;
 };
 
 export type Props = NativeStackScreenProps<RootStackParamList, "DetailsScreen">;
@@ -26,28 +22,33 @@ export type Props = NativeStackScreenProps<RootStackParamList, "DetailsScreen">;
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
+  const [favoriteShows, setFavoriteShows] = useState<ShowInfo[]>([]);
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: GlobalStyles.colors.primary500,
-            },
-            headerTitleStyle: {
-              color: "white",
-            },
-          }}
-        >
-          <Stack.Screen
-            name="SearchScreen"
-            component={SearchScreen}
-            options={{ title: translations.headers.search }}
-          />
-          <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <FavoriteShowsContext.Provider
+        value={{ favoriteShows, setFavoriteShows }}
+      >
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: GlobalStyles.colors.primary500,
+              },
+              headerTitleStyle: {
+                color: "white",
+              },
+            }}
+          >
+            <Stack.Screen
+              name="SearchScreen"
+              component={SearchScreen}
+              options={{ title: translations.headers.search }}
+            />
+            <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoriteShowsContext.Provider>
     </>
   );
 }

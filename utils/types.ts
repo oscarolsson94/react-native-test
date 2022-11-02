@@ -48,3 +48,12 @@ export interface Show {
     _links: { previousepisode: { href: string }; self: { href: string } };
   };
 }
+
+export interface ShowInfo {
+  imageUri?: string;
+  name: string;
+  rating: number;
+  genres: string[];
+  summary: string;
+  href: string;
+}

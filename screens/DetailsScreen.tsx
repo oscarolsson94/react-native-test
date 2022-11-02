@@ -5,8 +5,8 @@ import {
   Text,
   View,
   Linking,
-  Pressable,
   ScrollView,
+  Pressable,
 } from "react-native";
 import { Props } from "../App";
 import { RatingStars } from "../components/RatingStars";
@@ -15,11 +15,15 @@ import { Ionicons } from "@expo/vector-icons";
 import translations from "../translations.json";
 import { GenreList } from "../components/GenreList";
 import { ExternalLink } from "../components/ExternalLink";
+import { useGlobalContext } from "../store/show-context";
 
 export const DetailsScreen = ({ route, navigation }: Props) => {
   const { name, rating, genres, summary, imageUri, href } = route.params;
+  const { favoriteShows, setFavoriteShows } = useGlobalContext();
 
-  /* remove p and b html tags */
+  const showIsAFavorite = favoriteShows.find((show) => show.name === name);
+
+  /* remove <p> and <b> html tags */
   const cleanSummary = summary?.replace(/<\/?p[^>]*>|<\/?b[^>]*>/g, "");
 
   const handleLinkPress = async () => {
@@ -30,11 +34,30 @@ export const DetailsScreen = ({ route, navigation }: Props) => {
     navigation.setOptions({
       title: name,
       headerTintColor: "white",
-      headerRight: ({ tintColor }) => (
-        <Ionicons name="star" color={tintColor} size={20} onPress={() => {}} />
-      ),
+      headerRight: ({ tintColor }) =>
+        showIsAFavorite ? (
+          <Pressable
+            style={styles.iconContainer}
+            onPress={() => {
+              setFavoriteShows([
+                ...favoriteShows.filter((show) => show.name !== name),
+              ]);
+            }}
+          >
+            <Ionicons name="star" color={tintColor} size={20} />
+          </Pressable>
+        ) : (
+          <Pressable
+            style={styles.iconContainer}
+            onPress={() => {
+              setFavoriteShows([...favoriteShows, route.params]);
+            }}
+          >
+            <Ionicons name="star-outline" color={tintColor} size={20} />
+          </Pressable>
+        ),
     });
-  }, []);
+  }, [favoriteShows, setFavoriteShows]);
 
   return (
     <ScrollView style={styles.rootContainer}>
@@ -98,5 +121,8 @@ const styles = StyleSheet.create({
     paddingVertical: GlobalStyles.spacings.medium,
     borderTopColor: "white",
     borderTopWidth: 2,
+  },
+  iconContainer: {
+    padding: GlobalStyles.spacings.xsmall,
   },
 });
